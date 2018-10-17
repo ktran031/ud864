@@ -10,9 +10,7 @@
         padding: 0;
       }
 
-      #map {
-        height: 100%;
-      }
+      #map { max-width: 1400px; height: 100%; margin: 0 auto;}
     </style>
   </head>
   <body>
@@ -32,7 +30,7 @@
 
         // These are the real estate listings that will be shown to the user.
         // Normally we'd have these in a database instead.
-        var locations = [
+        let locations = [
           {title: 'Park Ave Penthouse', location: {lat: 40.7713024, lng: -73.9632393}},
           {title: 'Chelsea Loft', location: {lat: 40.7444883, lng: -73.9949465}},
           {title: 'Union Square Open Floor Plan', location: {lat: 40.7347062, lng: -73.9895759}},
@@ -41,30 +39,28 @@
           {title: 'Chinatown Homey Space', location: {lat: 40.7180628, lng: -73.9961237}}
         ];
 
-        var largeInfowindow = new google.maps.InfoWindow();
-        var bounds = new google.maps.LatLngBounds();
+        let largeInfowindow = new google.maps.InfoWindow();
+        let bounds = new google.maps.LatLngBounds();
 
         // The following group uses the location array to create an array of markers on initialize.
-        for (var i = 0; i < locations.length; i++) {
-          // Get the position from the location array.
-          var position = locations[i].location;
-          var title = locations[i].title;
-          // Create a marker per location, and put into markers array.
-          var marker = new google.maps.Marker({
-            map: map,
-            position: position,
-            title: title,
-            animation: google.maps.Animation.DROP,
-            id: i
-          });
-          // Push the marker to our array of markers.
-          markers.push(marker);
-          // Create an onclick event to open an infowindow at each marker.
-          marker.addListener('click', function() {
-            populateInfoWindow(this, largeInfowindow);
-          });
-          bounds.extend(markers[i].position);
-        }
+          locations.forEach((location, i) => {
+              // Create a marker per location, and put into markers array.
+              let marker = new google.maps.Marker({
+                  map: map,
+                  position: location.location,
+                  title: location.title,
+                  animation: google.maps.Animation.DROP,
+                  id: i
+              });
+              // Push the marker to our array of markers.
+              markers.push(marker);
+              // Create an onclick event to open an infowindow at each marker.
+              marker.addListener('click', function() {
+                  populateInfoWindow(this, largeInfowindow);
+              });
+              bounds.extend(markers[i].position);
+          })
+
         // Extend the boundaries of the map for each marker
         map.fitBounds(bounds);
       }
@@ -87,7 +83,7 @@
     </script>
 
     <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=MYAPIKEY&v=3&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMuPg-xp17jSEEjdxke-wpKNMmR24-MyY&v=3&callback=initMap">
     </script>
 
   </body>

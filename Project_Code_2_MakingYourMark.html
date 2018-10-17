@@ -10,9 +10,7 @@
         padding: 0;
       }
 
-      #map {
-        height: 100%;
-      }
+      #map { max-width: 1400px; height: 100%; margin: 0 auto;}
     </style>
   </head>
   <body>
@@ -25,6 +23,8 @@
           center: {lat: 40.7413549, lng: -73.9980244},
           zoom: 13
         });
+
+        // Marker
         var tribeca = {lat: 40.719526, lng: -74.0089934};
         var marker = new google.maps.Marker({
           position: tribeca,
@@ -35,7 +35,7 @@
     </script>
 
     <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=MYAPIKEY&v=3&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMuPg-xp17jSEEjdxke-wpKNMmR24-MyY&v=3&callback=initMap">
     </script>
 
   </body>
